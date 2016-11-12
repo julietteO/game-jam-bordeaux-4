@@ -36,12 +36,12 @@ GameObject:
   - 4: {fileID: 4000013012052354}
   - 95: {fileID: 95000010518674548}
   m_Layer: 0
-  m_Name: joyeux
+  m_Name: happy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010496239426
 GameObject:
   m_ObjectHideFlags: 1
@@ -115,12 +115,12 @@ GameObject:
   - 4: {fileID: 4000010618126432}
   - 95: {fileID: 95000013216118474}
   m_Layer: 0
-  m_Name: triste
+  m_Name: sad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012173307082
 GameObject:
   m_ObjectHideFlags: 1
@@ -471,6 +471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joy: {fileID: 198000010401771688}
+  happyModel: {fileID: 4000013012052354}
+  sadModel: {fileID: 4000010618126432}
 --- !u!137 &137000010484270956
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
