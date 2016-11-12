@@ -16,7 +16,7 @@ public class SplittingMesh : MonoBehaviour {
 		splitForm.SetActive(false);
 	}
 
-	void Split() {
+	public void Split() {
 		fullForm.SetActive(false);
 		splitForm.SetActive(true);
 		splitForm.transform.SetParent(fullForm.transform.parent, false);
@@ -25,6 +25,11 @@ public class SplittingMesh : MonoBehaviour {
 		if(onSplit != null) {
 			onSplit();
 		} 
+	}
+
+	public void UnSplit() {
+		fullForm.SetActive(true);
+		splitForm.SetActive(false);
 	}
 	
 	void OnCollisionEnter(Collision collision) {
