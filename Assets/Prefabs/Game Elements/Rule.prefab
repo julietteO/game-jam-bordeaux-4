@@ -23,7 +23,7 @@ GameObject:
   - 23: {fileID: 23000010988972646}
   - 54: {fileID: 54000010568628664}
   - 64: {fileID: 64000011413688594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube Split 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - 23: {fileID: 23000011584692606}
   - 54: {fileID: 54000011969695270}
   - 64: {fileID: 64000012209670580}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube Split 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013378732870}
   m_Layer: 0
-  m_Name: SplitCubePrefab
+  m_Name: Rule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011163552414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube Split
   m_TagString: Untagged
   m_Icon: {fileID: 0}

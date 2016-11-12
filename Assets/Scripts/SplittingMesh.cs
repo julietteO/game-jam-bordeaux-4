@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SplittingMesh : MonoBehaviour {
@@ -7,6 +8,8 @@ public class SplittingMesh : MonoBehaviour {
 	[SerializeField] GameObject splitForm;
 	[SerializeField] float relativeVelocityThreshold;
 	[SerializeField] Text debugText;
+
+	public event Action onSplit;
 
 	void Start () {
 		fullForm.SetActive(true);
@@ -19,18 +22,19 @@ public class SplittingMesh : MonoBehaviour {
 		splitForm.transform.SetParent(fullForm.transform.parent, false);
 		splitForm.transform.localPosition = fullForm.transform.localPosition;
 		splitForm.transform.localRotation = fullForm.transform.localRotation;
+		if(onSplit != null) {
+			onSplit();
+		} 
 	}
 	
 	void OnCollisionEnter(Collision collision) {
 		if(collision.rigidbody == null) 
 			return;
 
-		Debug.Log(collision.transform.name+" - "+collision.impulse.magnitude);
-
 		if(debugText != null) {
 			debugText.text = collision.transform.name+" - "+collision.impulse.magnitude;
 		}
-		
+
 		if(collision.impulse.magnitude > relativeVelocityThreshold) {
 			Split();
 		}

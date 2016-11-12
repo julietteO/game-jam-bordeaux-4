@@ -23,7 +23,7 @@ GameObject:
   - 23: {fileID: 23000013054491076}
   - 54: {fileID: 54000012244055996}
   - 64: {fileID: 64000012768663668}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube Split 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - 54: {fileID: 54000012871490344}
   - 64: {fileID: 64000011565923814}
   - 114: {fileID: 114000010613089744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube Full
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013014902136}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube Split
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000014105402790}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SplitCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010221976866}
   m_Layer: 0
-  m_Name: BreakThingsAtelier
+  m_Name: Atelier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ GameObject:
   - 23: {fileID: 23000010994395852}
   - 54: {fileID: 54000012407529728}
   - 64: {fileID: 64000011619759134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube Split 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
