@@ -24,7 +24,7 @@ GameObject:
   - 23: {fileID: 23000012393025654}
   - 54: {fileID: 54000011954263416}
   - 138: {fileID: 138000011797563712}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerTool
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,8 +12,7 @@ public class Teleporter : MonoBehaviour {
 		controller = GetComponent<SteamVR_TrackedController>();
 		controller.PadClicked += new ClickedEventHandler((_1, _2) => DisplayRay());
 		controller.PadUnclicked += new ClickedEventHandler((_1, _2) => HideRay());
-		
-		controller.TriggerClicked += new ClickedEventHandler((_1, _2) => SceneManager.LoadScene(0));
+		controller.TriggerClicked += new ClickedEventHandler((_1, _2) => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
 	}
 
 	void DisplayRay() {
@@ -25,7 +24,7 @@ public class Teleporter : MonoBehaviour {
 		Move();
 	}
 
-	void Move() {		
+	void Move() {
 		Plane plane = new Plane(Vector3.up, -player.position.y);
 		Ray ray = new Ray(this.transform.position, transform.forward);
 		var dist = 0f;
