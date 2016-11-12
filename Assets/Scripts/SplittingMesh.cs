@@ -22,6 +22,7 @@ public class SplittingMesh : MonoBehaviour {
 		splitForm.transform.SetParent(fullForm.transform.parent, false);
 		splitForm.transform.localPosition = fullForm.transform.localPosition;
 		splitForm.transform.localRotation = fullForm.transform.localRotation;
+
 		if(onSplit != null) {
 			onSplit();
 		} 
