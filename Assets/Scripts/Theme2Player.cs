@@ -23,7 +23,6 @@ public class Theme2Player : MonoBehaviour {
             new Instrument(new string[] { "Ins_2" }),
             new Instrument(new string[] { "Ins_3", "Ins_3_2" }),
             new Instrument(new string[] { "Ins_4", "Ins_4_2" }),
-            new Instrument(new string[] { "Ins_5", "Ins_5_2" }),
             new Instrument(new string[] { "Ins_6", "Ins_6_2"}),
             new Instrument(new string[] { "Ins_7", "Ins_7_2"}),
         };
@@ -59,7 +58,7 @@ public class Theme2Player : MonoBehaviour {
             nextInstrument.timeSamples = mainSource.timeSamples;
             nextInstrument.Play();
 
-            if (nextInstrumentIndex == 5) {
+            if (nextInstrumentIndex == 4) {
                 this.EnableSecondLoop();
             }
 
@@ -99,6 +98,7 @@ public class Theme2Player : MonoBehaviour {
                     secondLoopSource = currentSource;
                 }
 
+                currentSource.loop = false;
                 currentSource.timeSamples = mainSource.timeSamples;
                 currentSource.Play();
             }
@@ -121,6 +121,7 @@ public class Theme2Player : MonoBehaviour {
                     secondLoopSource = currentSource;
                 }
 
+                currentSource.loop = false;
                 currentSource.timeSamples = mainSource.timeSamples;
 
                 currentSource.Play();
