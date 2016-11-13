@@ -14,6 +14,8 @@ class ScoreManager : MonoBehaviour {
 
     public int levelIndex = 0;
 
+    public AudioSource transitionSound;
+
     [SerializeField] Image blackScreen;
     
     public int score {
@@ -60,12 +62,18 @@ class ScoreManager : MonoBehaviour {
         }
         score = 0;
 
+        var tmp = GameObject.Find("Black Screen");
+        if(tmp != null) {
+            blackScreen = tmp.GetComponent<Image>();
+        }
+
         blackScreen.color = new Color(0f, 0f, 0f, 1f);
         blackScreen.DOFade(0f, 1f);
     }
 
     public void EndLevel() {
-        blackScreen.DOFade(1f, 1f).OnComplete(() => {
+        transitionSound.Play();
+        blackScreen.DOFade(1f, 1f).SetDelay(5f).OnComplete(() => {
             StartCoroutine(GoToNextLevel());
         });
     }

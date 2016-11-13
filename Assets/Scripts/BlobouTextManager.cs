@@ -39,7 +39,7 @@ public class BlobouTextManager : MonoBehaviour {
 	}
 
 	public void nextText() {
-		if (textIndex < texts[level].Length) {
+		if (textIndex < texts[level].Length-1) {
 			textIndex++;
 			text.text = texts[level][textIndex];
 		} else {
