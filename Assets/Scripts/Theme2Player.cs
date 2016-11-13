@@ -62,6 +62,8 @@ public class Theme2Player : MonoBehaviour {
             if (nextInstrumentIndex == 5) {
                 this.EnableSecondLoop();
             }
+
+			nextInstrument.timeSamples = mainSource.timeSamples;
         }
         nextInstrumentIndex++;
     }
