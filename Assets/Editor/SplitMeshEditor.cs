@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
+[CanEditMultipleObjects]
 [CustomEditor(typeof(SplitMesh))]
 public class ObjectBuilderEditor : Editor
 {

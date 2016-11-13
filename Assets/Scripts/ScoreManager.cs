@@ -41,33 +41,21 @@ class ScoreManager : MonoBehaviour {
 
     public event Action<int, int> onScoreChange;
 
-    void Start() {
-        if(instance != null) {
-            Destroy(this);
-            return;
-        }
-        
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        StartLevel();
-    }
-
-    public void StartLevel() {
+    void Awake() {
+        levelIndex = SceneManager.GetActiveScene().buildIndex;
         objectives = FindObjectsOfType<SplitMesh>();
-        foreach(var objective in objectives) {
-            objective.onSplit += () => score++;
-        }
-        Debug.Log("objectives : "+objectives.Length);
         score = 0;
+
+        Debug.Log("current level is "+levelIndex);
+        Debug.Log("objectives : "+objectives.Length);
     }
 
-    public void OnLevelWasLoaded() {
-        objectives = FindObjectsOfType<SplitMesh>();
+    void Start() {
+        instance = this;
+
         foreach(var objective in objectives) {
             objective.onSplit += () => score++;
         }
-        Debug.Log("objectives : "+objectives.Length);
         score = 0;
     }
 
