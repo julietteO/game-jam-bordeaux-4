@@ -12,7 +12,6 @@ public class Teleporter : MonoBehaviour {
 		controller = GetComponent<SteamVR_TrackedController>();
 		controller.PadClicked += new ClickedEventHandler((_1, _2) => DisplayRay());
 		controller.PadUnclicked += new ClickedEventHandler((_1, _2) => HideRay());
-		controller.TriggerClicked += new ClickedEventHandler((_1, _2) => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
 	}
 
 	void DisplayRay() {
