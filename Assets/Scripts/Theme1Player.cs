@@ -83,6 +83,7 @@ public class Theme1Player : MonoBehaviour {
         }
 
         audioFadeIn = new List<FadeIn>();
+        audioFadeOut = new List<FadeOut>();
 
         mainSource = (AudioSource) instruments[0].gameObjects[0].GetComponent("AudioSource");
         mainSource.Play();
@@ -191,7 +192,7 @@ public class Theme1Player : MonoBehaviour {
             }
             else {
                 audioFadeOut.Remove(fadeOut);
-                if (audioFadeOut.Count === 0) {
+                if (audioFadeOut.Count == 0) {
                     isPlaying = false;
                 }
             }
