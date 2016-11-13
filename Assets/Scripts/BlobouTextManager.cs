@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BlobouTextManager : MonoBehaviour {
 	public static BlobouTextManager instance;
@@ -26,7 +27,6 @@ public class BlobouTextManager : MonoBehaviour {
 	};
 
 	int textIndex = 0;
-	// TODO change level when scene change, or get it from scene index
 	public int level = 0;
 	public Text text;
 
@@ -35,15 +35,17 @@ public class BlobouTextManager : MonoBehaviour {
 	}
 
 	void Start () {
+		level = SceneManager.GetActiveScene ().buildIndex;
 		text.text = texts[level][textIndex];	
 	}
 
 	public void nextText() {
-		if (textIndex < texts[level].Length-1) {
+		if (textIndex < texts[level].Length) {
 			textIndex++;
 			text.text = texts[level][textIndex];
 		} else {
 			gameObject.SetActive(false);
 		}
 	}
+
 }
