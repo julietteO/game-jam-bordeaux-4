@@ -17,12 +17,9 @@ public class BlobouTextManager : MonoBehaviour {
 		},
 		new string[] {
 			"Oh ? Dans ce parc aussi il y en a ?",
-			"Je pense que ça ne sera pas aussi facile",
-			"Regarde, j'ai l'impression qu'il y a des cibles"
+			"Je pense que ça ne sera pas aussi facile"
 		},
 		new string[] {
-			"Un donjon maintenant ?!",
-			"Allons-y alors"
 		}
 	};
 
