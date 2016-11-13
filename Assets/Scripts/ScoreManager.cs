@@ -12,7 +12,7 @@ class ScoreManager : MonoBehaviour {
 
     int _score;
 
-    int levelIndex = 0;
+    public int levelIndex = 0;
 
     [SerializeField] Image blackScreen;
     
