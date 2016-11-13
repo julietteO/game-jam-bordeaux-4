@@ -4,7 +4,7 @@ using UnityEngine;
 class ScoreManager : MonoBehaviour {
     public static ScoreManager instance;
 
-    SplittingMesh[] objectives;
+    SplitMesh[] objectives;
 
     int _score;
     
@@ -32,7 +32,7 @@ class ScoreManager : MonoBehaviour {
 
     void Awake() {
         instance = this;
-        objectives = FindObjectsOfType<SplittingMesh>();
+        objectives = FindObjectsOfType<SplitMesh>();
         foreach(var objective in objectives) {
             objective.onSplit += () => score++;
         }
