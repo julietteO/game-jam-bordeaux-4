@@ -22,7 +22,12 @@ public class SplitMesh : MonoBehaviour {
 		
 		if(onSplit != null) {
 			onSplit();
-		} 
+			
+			var audio = GetComponent<AudioSource>();
+			if(audio != null) {
+				audio.Play();
+			}
+		}
 	}
 
 	void OnCollisionEnter(Collision collision) {
