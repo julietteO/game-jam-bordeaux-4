@@ -61,14 +61,6 @@ class ScoreManager : MonoBehaviour {
             objective.onSplit += () => score++;
         }
         score = 0;
-
-        var tmp = GameObject.Find("Black Screen");
-        if(tmp != null) {
-            blackScreen = tmp.GetComponent<Image>();
-        }
-
-        blackScreen.color = new Color(0f, 0f, 0f, 1f);
-        blackScreen.DOFade(0f, 1f);
     }
 
     public void EndLevel() {

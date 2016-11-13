@@ -31,15 +31,38 @@ public class FadeIn {
     }
 }
 
+public class FadeOut {
+
+    private AudioSource audio;
+    public float currentVolume;
+
+    public FadeOut(AudioSource audio) {
+        this.audio = audio;
+        currentVolume = audio.volume;
+    }
+
+    public void Update() {
+        currentVolume -= (float)(0.1 * Time.deltaTime);
+        audio.volume = currentVolume;
+    }
+
+    public bool IsDecreasing() {
+        return audio.volume <= 0;
+    }
+}
+
 public class Theme1Player : MonoBehaviour {
 
     Instrument[] instruments;
     List<FadeIn> audioFadeIn;
+    List<FadeOut> audioFadeOut;
     AudioSource mainSource;
     AudioSource secondLoopSource;
     int nextInstrumentIndex;
     bool secondLoopEnabled = false;
     bool onSecondLoop = false;
+    bool isPlaying = false;
+    bool isStopping = false;
 
     // Use this for initialization
     void Start() {
@@ -60,9 +83,11 @@ public class Theme1Player : MonoBehaviour {
         }
 
         audioFadeIn = new List<FadeIn>();
+        audioFadeOut = new List<FadeOut>();
 
         mainSource = (AudioSource) instruments[0].gameObjects[0].GetComponent("AudioSource");
         mainSource.Play();
+        isPlaying = true;
 
         nextInstrumentIndex = 1;
 
@@ -105,6 +130,10 @@ public class Theme1Player : MonoBehaviour {
     }
 
     void PlayFirstLoop() {
+        if (isStopping) {
+            return;
+        }
+
         secondLoopSource = null;
         onSecondLoop = false;
 
@@ -123,6 +152,10 @@ public class Theme1Player : MonoBehaviour {
     }
 
     void PlaySecondLoop() {
+        if (isStopping) {
+            return;
+        }
+
         secondLoopSource = null;
         onSecondLoop = true;
 
@@ -140,12 +173,28 @@ public class Theme1Player : MonoBehaviour {
         }
     }
 
+    bool IsPlaying() {
+        return isPlaying;
+    }
+
     void Update() {
         foreach (FadeIn fadeIn in audioFadeIn) {
             if (fadeIn.IsIncreasing()) {
                 fadeIn.Update();
             } else {
                 audioFadeIn.Remove(fadeIn);
+            }
+        }
+
+        foreach (FadeOut fadeOut in audioFadeOut) {
+            if (fadeOut.IsDecreasing()) {
+                fadeOut.Update();
+            }
+            else {
+                audioFadeOut.Remove(fadeOut);
+                if (audioFadeOut.Count == 0) {
+                    isPlaying = false;
+                }
             }
         }
 
@@ -156,6 +205,21 @@ public class Theme1Player : MonoBehaviour {
                 PlaySecondLoop();
             }
         }
+    }
+
+    void Stop() {
+        foreach (Instrument currentInstrument in instruments) {
+            if (currentInstrument.gameObjects.Length == 2 && onSecondLoop) {
+                AudioSource currentSource = (AudioSource)currentInstrument.gameObjects[1].GetComponent("AudioSource");
+                audioFadeOut.Add(new FadeOut(currentSource));
+            }
+            else {
+                AudioSource currentSource = (AudioSource)currentInstrument.gameObjects[0].GetComponent("AudioSource");
+                audioFadeOut.Add(new FadeOut(currentSource));
+            }
+        }
+
+        isStopping = true;
     }
 }
 
