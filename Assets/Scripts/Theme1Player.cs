@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class Instrument {
     public string[] names;
@@ -178,6 +179,10 @@ public class Theme1Player : MonoBehaviour {
     }
 
     void Update() {
+        if(isStopping) {
+            return;
+        }
+
         foreach (FadeIn fadeIn in audioFadeIn) {
             if (fadeIn.IsIncreasing()) {
                 fadeIn.Update();
@@ -190,12 +195,6 @@ public class Theme1Player : MonoBehaviour {
             if (fadeOut.IsDecreasing()) {
                 fadeOut.Update();
             }
-            else {
-                audioFadeOut.Remove(fadeOut);
-                if (audioFadeOut.Count == 0) {
-                    isPlaying = false;
-                }
-            }
         }
 
         if (secondLoopEnabled && !secondLoopSource.isPlaying) {
@@ -207,15 +206,15 @@ public class Theme1Player : MonoBehaviour {
         }
     }
 
-    void Stop() {
+    public void Stop() {
         foreach (Instrument currentInstrument in instruments) {
             if (currentInstrument.gameObjects.Length == 2 && onSecondLoop) {
-                AudioSource currentSource = (AudioSource)currentInstrument.gameObjects[1].GetComponent("AudioSource");
-                audioFadeOut.Add(new FadeOut(currentSource));
+                AudioSource currentSource = (AudioSource)currentInstrument.gameObjects[1].GetComponent<AudioSource>();
+                DOTween.To(v => currentSource.volume = v, 1f, 0f, 1.5f); 
             }
             else {
-                AudioSource currentSource = (AudioSource)currentInstrument.gameObjects[0].GetComponent("AudioSource");
-                audioFadeOut.Add(new FadeOut(currentSource));
+                AudioSource currentSource = (AudioSource)currentInstrument.gameObjects[0].GetComponent<AudioSource>();
+                DOTween.To(v => currentSource.volume = v, 1f, 0f, 1.5f); 
             }
         }
 
