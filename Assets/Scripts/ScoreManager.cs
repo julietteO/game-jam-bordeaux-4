@@ -16,8 +16,6 @@ class ScoreManager : MonoBehaviour {
 
     public AudioSource transitionSound;
 
-    [SerializeField] Image blackScreen;
-    
     public int score {
         get {
             return _score;
@@ -60,11 +58,31 @@ class ScoreManager : MonoBehaviour {
         foreach(var objective in objectives) {
             objective.onSplit += () => score++;
         }
+        Debug.Log("objectives : "+objectives.Length);
+        score = 0;
+    }
+
+    public void OnLevelWasLoaded() {
+        objectives = FindObjectsOfType<SplitMesh>();
+        foreach(var objective in objectives) {
+            objective.onSplit += () => score++;
+        }
+        Debug.Log("objectives : "+objectives.Length);
         score = 0;
     }
 
     public void EndLevel() {
+        var tmp = GameObject.Find("Black Screen");
+        var blackScreen = tmp.GetComponent<Image>();
+
+        var player1 = GameObject.FindObjectOfType<Theme1Player>();
+        if(player1 != null)
+            player1.Stop();
+        var player2 = GameObject.FindObjectOfType<Theme2Player>();
+        if(player2 != null)
+            player2.Stop();
         transitionSound.Play();
+
         blackScreen.DOFade(1f, 1f).SetDelay(5f).OnComplete(() => {
             StartCoroutine(GoToNextLevel());
         });
@@ -73,6 +91,5 @@ class ScoreManager : MonoBehaviour {
     IEnumerator GoToNextLevel() {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(++levelIndex);
-        StartLevel();
     }
 }
