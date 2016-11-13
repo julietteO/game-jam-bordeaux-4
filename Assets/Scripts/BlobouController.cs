@@ -7,12 +7,13 @@ public class BlobouController : MonoBehaviour {
 	[SerializeField] Transform happyModel;
 	[SerializeField] Transform sadModel;
 
+	float progress = 0f;
+
 	void Start () {
 		ScoreManager.instance.onScoreChange += (score, total) => {
 			MakeHappy();
-			if(score != total) {
-				StartCoroutine(CallAfter(MakeSad, 2.5f));
-			}
+			progress = score / (float) total;
+			StartCoroutine(CallAfter(MakeSadIfTheLevelIsNotFinished, 2.5f));
 		}; 
 	}
 
@@ -22,9 +23,11 @@ public class BlobouController : MonoBehaviour {
 		sadModel.gameObject.SetActive(false);
 	}
 
-	void MakeSad() {
-		happyModel.gameObject.SetActive(false);
-		sadModel.gameObject.SetActive(true);
+	void MakeSadIfTheLevelIsNotFinished() {
+		if(progress < 1f) {
+			happyModel.gameObject.SetActive(false);
+			sadModel.gameObject.SetActive(true);
+		}
 	}
 
 	IEnumerator CallAfter(Action action, float delay) {

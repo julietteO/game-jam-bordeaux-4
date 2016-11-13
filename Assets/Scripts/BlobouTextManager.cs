@@ -1,16 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class BlobouTextManager : MonoBehaviour {
 	public static BlobouTextManager instance;
-
-	int textIndex = 0;
-
-	// TODO change level when scene change, or get it from scene index
-	public int level = 0;
-
-	Text textComponent;
 
 	string[][] texts = new string[][]{
 		new string[] {
@@ -33,27 +25,25 @@ public class BlobouTextManager : MonoBehaviour {
 		}
 	};
 
-
-	// Use this for initialization
-	void Start () {
-		textComponent = GetComponent<Text> ();	
-		textComponent.text = texts[level][textIndex];	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
-
-	public void nextText() {
-		if (textIndex >= texts[level].Length) {
-			textIndex++;
-			textComponent.text = texts [level][textIndex];
-		} else {
-			GameObject.FindGameObjectWithTag ("BlobouTextCanvas").SetActive(false);
-		}
-	}
+	int textIndex = 0;
+	// TODO change level when scene change, or get it from scene index
+	public int level = 0;
+	public Text text;
 
 	void Awake() {
 		instance = this;
+	}
+
+	void Start () {
+		text.text = texts[level][textIndex];	
+	}
+
+	public void nextText() {
+		if (textIndex < texts[level].Length) {
+			textIndex++;
+			text.text = texts[level][textIndex];
+		} else {
+			gameObject.SetActive(false);
+		}
 	}
 }
